@@ -45,6 +45,7 @@ One or more movies that:
 
 ### limitations
 - only handles RiffTrax season 1
+- only handles movie riffs, not tv episode riffs
 - can't create multiple symlinks for movies that contain more than one RiffTrax, e.g. "Mike Solo" and "Three Riffer" 
 
 These will be addressed in a future update.
