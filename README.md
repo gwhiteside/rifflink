@@ -44,7 +44,7 @@ One or more movies that:
 - contain at least one audio track with a label in which the word "riff" appears
 
 ### limitations
-- only handles RiffTrax season 1
+- only handles RiffTrax seasons 1 and 2
 - only handles movie riffs, not tv episode riffs
 - can't create multiple symlinks for movies that contain more than one RiffTrax, e.g. "Mike Solo" and "Three Riffer" 
 - no customization of output season/episode numbering format

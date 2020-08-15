@@ -30,7 +30,7 @@ def main():
 		)
 	args = parser.parse_args()
 
-	with open("rifflink.json", "r") as movies_file:
+	with open("s01.json", "r") as movies_file:
 		movies_dict = json.load(movies_file)
 	movies_dict = {key.casefold(): value for key, value in movies_dict.items()}
 
