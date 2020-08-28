@@ -30,9 +30,15 @@ def main():
 		)
 	args = parser.parse_args()
 
-	with open("s01.json", "r") as movies_file:
-		movies_dict = json.load(movies_file)
-	movies_dict = {key.casefold(): value for key, value in movies_dict.items()}
+	with open("s01.json", "r") as s01_json:
+		s01 = json.load(s01_json)
+	s01 = {key.casefold(): value for key, value in s01.items()}
+
+	with open("s02.json", "r") as s02_json:
+		s02 = json.load(s02_json)
+	s02 = {key.casefold(): value for key, value in s02.items()}
+
+	dictionary = merge_dictionaries(s01, s02)
 
 	for root, directories, files in os.walk(args.source):
 		for file in files:
@@ -47,11 +53,11 @@ def main():
 				continue
 
 			movie = file_name.casefold()
-			if movie not in movies_dict:
+			if movie not in dictionary:
 				print("warning: no match for", file)
 				continue
 
-			out_filename = os.path.join(args.destination, movies_dict.get(movie))
+			out_filename = os.path.join(args.destination, dictionary.get(movie))
 
 			if not args.dry_run:
 				os.symlink(fqfn, out_filename)
@@ -80,6 +86,12 @@ def contains_rifftrax(file):
 		)
 	out, err = p.communicate()
 	return re.search("riff", out, re.IGNORECASE)
+
+
+def merge_dictionaries(x, y):
+	z = x.copy()
+	z.update(y)
+	return z
 
 
 if __name__ == "__main__":
